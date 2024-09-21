@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pouria Bahri | Portfolio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: #2c3e50; /* Darker background for navbar */
+    }
+
+    .navbar-nav .nav-link {
+      color: white;
+      padding: 15px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background-color: #34495e; /* Darker hover effect */
+    }
+
+    .bg-header {
+      background-color: #28a745; /* More vibrant green */
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bg-header::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1));
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 250px; /* Set fixed height for consistency */
+      object-fit: cover; /* Ensure the image covers the area without distortion */
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .portfolio-section, .blog-section {
+      padding: 50px 0;
+    }
+
+    .btn-scroll {
+      padding: 10px 20px;
+      background-color: #27ae60; /* Updated button color */
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn-scroll:hover {
+      background-color: #219653; /* Darker hover effect */
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* New styles for the body and descriptions */
+    .portfolio-item h3 {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      margin: 15px 0;
+      font-size: 1.5em; /* Increased font size */
+    }
+
+    .portfolio-item p {
+      font-family: 'Lora', serif;
+      font-size: 1em; /* Increased font size */
+      color: #555; /* Slightly lighter color for better readability */
+    }
+
+    .blog-post h3 {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      font-size: 1.5em; /* Increased font size */
+    }
+
+    .blog-post p {
+      font-family: 'Lora', serif;
+      font-size: 1em; /* Increased font size */
+      color: #555;
+    }
+
+    /* Blog Styles */
+    .blog-section h2 {
+      text-align: center;
+      font-family: 'Lora', serif;
+      margin-bottom: 30px;
+      font-size: 2em; /* Increased font size for blog title */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Pouria Bahri</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#portfolio">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#register">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header Section -->
+<div class="bg-header">
+  <h1>Pouria Bahri</h1>
+  <p>Software Engineer | Web Developer | Designer</p>
+  <a href="#portfolio" class="btn-scroll">View My Work</a>
+</div>
+
+<!-- Portfolio Section -->
+<div id="portfolio" class="portfolio-section container mt-5">
+  <h2 class="text-center fade-in">Portfolio</h2>
+  <div class="row">
+    <div class="col-sm-4 fade-in">
+      <div class="portfolio-item">
+        <h3>Smart Watch App Design</h3>
+        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQTQ3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1687660671363" alt="Smart Watch App">
+        <p>A sleek and intuitive interface for a health-focused smartwatch app.</p>
+      </div>
+    </div>
+    <div class="col-sm-4 fade-in">
+      <div class="portfolio-item">
+        <h3>Mobile First E-commerce Site</h3>
+        <img src="https://miro.medium.com/v2/resize:fit:775/1*61OYsD2kCNGYkzSV6NuwgA.jpeg" alt="E-commerce Site">
+        <p>Responsive e-commerce site optimized for mobile users.</p>
+      </div>
+    </div>
+    <div class="col-sm-4 fade-in">
+      <div class="portfolio-item">
+        <h3>AI Image Enhancement Tool</h3>
+        <img src="https://www.dpreview.com/files/p/articles/4942096527/on1-nonoise-ai-example-iso-16000.jpeg" alt="AI Image Tool">
+        <p>An AI-based tool to enhance image quality in low-light conditions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Blog Section -->
+<div id="blog" class="blog-section">
+  <div class="container fade-in">
+    <h2>Latest Blog Posts</h2>
+    <div class="blog-post">
+      <h3>My Journey in Software Development</h3>
+      <p>As a software engineer with a background in computer and systems engineering, I have developed a passion for creating efficient solutions that empower users. My projects range from web applications to mobile interfaces, and I continually seek to enhance my skills through new challenges and technologies. <a href="#">Read more</a></p>
+    </div>
+    <div class="blog-post">
+      <h3>Exploring New Technologies</h3>
+      <p>I enjoy experimenting with new programming languages and frameworks. Staying updated with industry trends helps me bring fresh ideas to my projects. <a href="#">Read more</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- JS Script for Dynamic Features -->
+<script>
+  $(window).on('scroll', function() {
+    $('.fade-in').each(function() {
+      var position = $(this).offset().top;
+      var windowTop = $(window).scrollTop() + $(window).height() - 100;
+      if (position < windowTop) {
+        $(this).addClass('show');
+      }
+    });
+  });
+
+  $('.btn-scroll').on('click', function(e) {
+    e.preventDefault();
+    var target = $(this).attr('href');
+    $('html, body').animate({
+      scrollTop: $(target).offset().top
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>
