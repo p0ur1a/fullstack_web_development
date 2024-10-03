@@ -9,3 +9,9 @@ class Student(models.Model):
     date_of_birth = models.DateField()
     enrolled = models.DateField()
     grade = models.IntegerField()
+    
+    class Meta:
+        verbose_name_plural = "Students"
+        
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} {self.enrolled}"
