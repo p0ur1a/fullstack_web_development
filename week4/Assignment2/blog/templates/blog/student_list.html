@@ -4,57 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student List</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS for modern look -->
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
         table {
+            width: auto;
             border-collapse: collapse;
             margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        table, th, td {
-            border: 1px solid black;
-        }
+
         th, td {
-            padding: 10px;
-            text-align: left;
+            padding: 15px 20px;
+            text-align: center; /* Centering the content */
+            border-bottom: 1px solid #e0e0e0;
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #2c3e50;
+            color: white;
+            text-transform: uppercase;
         }
-        td {
-            text-align: center;
+
+        td a {
+            color: #2980b9;
+            font-weight: 500;
         }
-        a {
-            color: blue;
-            text-decoration: none;
+
+        td a:hover {
+            color: #3498db;
         }
-        a:hover {
-            text-decoration: underline;
-        }
-        .add-student {
-            margin-bottom: 20px;
-        }
-        form.logout-form {
-            display: inline;
-        }
-        form.search-form {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .pagination {
+
+        .add-student, .pagination, .search-form {
             text-align: center;
             margin: 20px 0;
         }
-        .pagination span, .pagination a {
-            margin: 0 5px;
-            padding: 8px 12px;
-            border: 1px solid #ccc;
+
+        .add-student a {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
             text-decoration: none;
-            color: black;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
         }
-        .pagination span {
-            font-weight: bold;
+
+        .add-student a:hover {
+            background-color: #3498db;
         }
+
+        /* Style the logout button to make it more visible */
+        form.logout-form button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form.logout-form button:hover {
+            background-color: #c0392b;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        button[type="submit"] {
+            background-color: #29b95b; /* Same as Add New Student button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #29b95b;
+        }
+
+
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 0 5px;
+            border-radius: 5px;
+            color: #2c3e50;
+            text-decoration: none;
+            background-color: #ecf0f1;
+            transition: background-color 0.3s ease;
+        }
+
         .pagination a:hover {
-            background-color: #f2f2f2;
+            background-color: #bdc3c7;
+        }
+
+        .pagination span {
+            background-color: #2980b9;
+            color: white;
         }
     </style>
 </head>
@@ -71,15 +148,15 @@
         <div class="add-student">
             <a href="{% url 'add_student' %}">Add New Student</a> |
             <!-- Logout using a form -->
-            <form method="POST" action="{% url 'logout' %}" class="logout-form">
+            <form method="POST" action="{% url 'logout' %}" class="logout-form" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit" style="background:none; border:none; color:blue; cursor:pointer;">
-                    Logout
-                </button>
+                <button type="submit">Logout</button>
             </form>
         </div>
     {% else %}
-        <a href="{% url 'login' %}">Login</a>
+        <div class="add-student">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
     {% endif %}
 
     <table>
@@ -95,9 +172,7 @@
             {% for student in students %}
             <tr>
                 <td>
-                    <a href="{% url 'student_detail' student.id %}">
-                        {{ student.first_name }} {{ student.last_name }}
-                    </a>
+                    <a href="{% url 'student_detail' student.id %}">{{ student.first_name }} {{ student.last_name }}</a>
                 </td>
                 {% if user.is_authenticated %}
                 <td>
