@@ -39,6 +39,23 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pagination span, .pagination a {
+            margin: 0 5px;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: black;
+        }
+        .pagination span {
+            font-weight: bold;
+        }
+        .pagination a:hover {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -95,5 +112,20 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <!-- Pagination controls -->
+    <div class="pagination">
+        {% if students.has_previous %}
+            <a href="?page=1{% if query %}&q={{ query }}{% endif %}">First</a>
+            <a href="?page={{ students.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">Previous</a>
+        {% endif %}
+
+        <span>Page {{ students.number }} of {{ students.paginator.num_pages }}</span>
+
+        {% if students.has_next %}
+            <a href="?page={{ students.next_page_number }}{% if query %}&q={{ query }}{% endif %}">Next</a>
+            <a href="?page={{ students.paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">Last</a>
+        {% endif %}
+    </div>
 </body>
 </html>
