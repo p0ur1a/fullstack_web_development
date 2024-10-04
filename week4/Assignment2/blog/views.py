@@ -26,13 +26,30 @@ def add_student(request):
     
     return render(request, 'blog/add_student.html', {'form': form})
 
+# def edit_student(request, student_id):
+#     student = get_object_or_404(Student, id=student_id)
+    
+#     if request.method == "POST":
+#         form = StudentForm(request.POST, instance=student)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('student_list')
+#     else:
+#         form = StudentForm(instance=student)
+    
+#     return render(request, 'blog/edit_student.html', {'form': form, 'student': student})
+
 def edit_student(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     
     if request.method == "POST":
-        form = StudentForm(request.POST, instance=student)
-        if form.is_valid():
-            form.save()
+        if 'save' in request.POST:
+            form = StudentForm(request.POST, instance=student)
+            if form.is_valid():
+                form.save()
+                return redirect('student_list')
+        elif 'delete' in request.POST:
+            student.delete()
             return redirect('student_list')
     else:
         form = StudentForm(instance=student)

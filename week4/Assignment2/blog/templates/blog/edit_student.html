@@ -23,6 +23,10 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
         button {
             padding: 10px 15px;
             background-color: #4CAF50;
@@ -31,8 +35,23 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        .delete-button {
+            background-color: #d9534f;
+        }
         button:hover {
             background-color: #45a049;
+        }
+        .delete-button:hover {
+            background-color: #c9302c;
+        }
+        a {
+            margin-top: 15px;
+            display: inline-block;
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -42,7 +61,11 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Update Student</button>
+        
+        <div class="actions">
+            <button type="submit" name="save">Save</button>
+            <button type="submit" name="delete" class="delete-button">Delete</button>
+        </div>
     </form>
 
     <a href="{% url 'student_list' %}">Back to Student List</a>
