@@ -35,10 +35,20 @@
         form.logout-form {
             display: inline;
         }
+        form.search-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Student List</h1>
+
+    <!-- Search bar -->
+    <form method="GET" action="{% url 'student_list' %}" class="search-form">
+        <input type="text" name="q" placeholder="Search by name" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
 
     {% if user.is_authenticated %}
         <div class="add-student">
@@ -80,7 +90,7 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="{% if user.is_authenticated %}2{% else %}1{% endif %}">No students available</td>
+                <td colspan="{% if user.is_authenticated %}2{% else %}1{% endif %}">No students found</td>
             </tr>
             {% endfor %}
         </tbody>
