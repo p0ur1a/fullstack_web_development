@@ -8,12 +8,14 @@ This is a Django-based web application for managing student records. It allows u
 - Add, edit, delete, and view student records
 - Search functionality for students by name
 - Pagination for student list display
+- Data verification for various data fields
 
 ## Prerequisites
 
-- Python 3.x installed on your machine
-- pip (Python package installer) installed
-- Django installed (preferably in a virtual environment)
+- Python 3.x
+- Django 3.x
+- pip (Python package installer)
+- Git
 
 ## Installation
 
@@ -24,45 +26,27 @@ This is a Django-based web application for managing student records. It allows u
    cd fullstack_web_development/week4/Assignment2
     ```
 
-2. **Create a virtual environment** (optional but recommended):
-
+2. **Create and activate a virtual environment**:
     ```bash
     python -m venv venv
+    venv\Scripts\activate  # On Windows
+    # source venv/bin/activate  # On macOS/Linux
     ```
 
-3. **Activate the virtual environment**:
-
-    - For Windows:
-
-        ```bash
-        venv\Scripts\activate
-        ```
-
-    - For macOS and Linux:
-
-        ```bash
-        source venv/bin/activate
-        ```
-
-4. **Install the required packages**:
-
+3. **Install Django**:
     ```bash
-    pip install -r requirements.txt
+    pip install django
     ```
 
-5. **Apply database migrations**:
-
+4. **Apply migrations**:
     ```bash
     python manage.py migrate
     ```
 
-6. **Create a superuser** (for admin access):
-
+5. **Create a superuser**:
     ```bash
     python manage.py createsuperuser
     ```
-
-    Follow the prompts to create a superuser account.
 
 ## Running the Project
 
@@ -72,7 +56,7 @@ This is a Django-based web application for managing student records. It allows u
     python manage.py runserver
     ```
 
-2. Open your web browser and go to `http://127.0.0.1:8000/students/` to view the application.
+2. Open your web browser and go to `http://127.0.0.1:8000/`.
 
 ## Usage
 
@@ -83,4 +67,4 @@ This is a Django-based web application for managing student records. It allows u
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License.
