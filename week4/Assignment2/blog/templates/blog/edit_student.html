@@ -61,7 +61,20 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        
+
+        <!-- Display validation errors here -->
+        {% if form.errors %}
+            <div style="color:red;">
+                <ul>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
         <div class="actions">
             <button type="submit" name="save">Save</button>
             <button type="submit" name="delete" class="delete-button">Delete</button>

@@ -42,8 +42,22 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Add Student</button>
+    
+        {% if form.errors %}
+            <ul>
+                {% for field in form %}
+                    {% if field.errors %}
+                        <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    
+        <div class="actions">
+            <button type="submit">Save</button>
+        </div>
     </form>
+    
 
     <a href="{% url 'student_list' %}">Back to Student List</a>
 </body>
