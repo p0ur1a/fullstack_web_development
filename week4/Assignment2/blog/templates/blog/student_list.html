@@ -7,7 +7,7 @@
     <style>
         table {
             border-collapse: collapse;
-            margin: 20px auto; /* Center the table */
+            margin: 20px auto;
         }
         table, th, td {
             border: 1px solid black;
@@ -32,20 +32,36 @@
         .add-student {
             margin-bottom: 20px;
         }
+        form.logout-form {
+            display: inline;
+        }
     </style>
 </head>
 <body>
     <h1>Student List</h1>
 
-    <div class="add-student">
-        <a href="{% url 'add_student' %}">Add New Student</a>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="add-student">
+            <a href="{% url 'add_student' %}">Add New Student</a> |
+            <!-- Logout using a form -->
+            <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" style="background:none; border:none; color:blue; cursor:pointer;">
+                    Logout
+                </button>
+            </form>
+        </div>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
 
     <table>
         <thead>
             <tr>
                 <th>Name</th>
+                {% if user.is_authenticated %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -56,13 +72,15 @@
                         {{ student.first_name }} {{ student.last_name }}
                     </a>
                 </td>
+                {% if user.is_authenticated %}
                 <td>
                     <a href="{% url 'edit_student' student.id %}">Edit</a>
                 </td>
+                {% endif %}
             </tr>
             {% empty %}
             <tr>
-                <td colspan="2">No students available</td>
+                <td colspan="{% if user.is_authenticated %}2{% else %}1{% endif %}">No students available</td>
             </tr>
             {% endfor %}
         </tbody>
