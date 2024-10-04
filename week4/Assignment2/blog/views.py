@@ -4,8 +4,7 @@ from .forms import StudentForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q  # For complex queries
 from django.core.paginator import Paginator
-
-
+from django.http import Http404
 
 # Create your views here.
 
@@ -32,9 +31,9 @@ def student_list(request):
 
 
 def student_detail(request, student_id):
-    student = get_object_or_404(Student, id=student_id)
-    context = {"student": student}
-    return render(request, "blog/student_detail.html", context)
+    student = get_object_or_404(Student, pk=student_id)  # Automatically raises 404 if student does not exist
+    return render(request, "blog/student_detail.html", {"student": student})
+
 
 @login_required
 def add_student(request):
@@ -65,3 +64,4 @@ def edit_student(request, student_id):
         form = StudentForm(instance=student)
     
     return render(request, 'blog/edit_student.html', {'form': form, 'student': student})
+
